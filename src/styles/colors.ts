@@ -1,0 +1,18 @@
+export const colors = {
+  primaria: '#6D4AE8',
+  primariaMedia: '#A78BFA',
+  primariaClara: '#EDE9FE',
+  fundo: '#F7F5FF',
+  titulo: '#1E1B4B',
+  texto: '#4B5563',
+  textoClaro: '#6B7280',
+  verde: '#0F766E',
+  cinza: '#6B7280',
+  cinzaClaro: '#F1F1F5',
+  borda: '#ECEAF5',
+  inputFundo: '#F3F2FC',
+  verdeClaro: '#E0F5EF',
+  erro: '#DC2626',
+  vermelhoClaro: '#FDECEC',
+  branco: '#FFFFFF',
+};
