@@ -23,4 +23,9 @@ export const styles = StyleSheet.create({
   chipTextoAtivo: {
     color: colors.branco,
   },
+    listaQuebrada: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
 });

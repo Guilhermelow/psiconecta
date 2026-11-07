@@ -67,7 +67,7 @@ export default function PerfilPaciente() {
             icone="person-outline"
             titulo="Dados pessoais"
             subtitulo="Nome, e-mail e identificação"
-            onPress={() => router.push('/paciente/conta/dados')}
+            onPress={() => router.push('/conta/dados')}
           />
           <View style={styles.divisor} />
           <MenuItem
@@ -92,14 +92,14 @@ export default function PerfilPaciente() {
             icone="help-buoy-outline"
             titulo="Ajuda e suporte"
             subtitulo="Dúvidas frequentes, contato e sobre o projeto"
-            onPress={() => router.push('/paciente/conta/ajuda')}
+            onPress={() => router.push('/conta/ajuda')}
           />
           <View style={styles.divisor} />
           <MenuItem
             icone="shield-checkmark-outline"
             titulo="Termos e privacidade"
             subtitulo="Sigilo profissional e LGPD"
-            onPress={() => router.push('/paciente/conta/termos')}
+            onPress={() => router.push('/conta/termos')}
           />
         </View>
 

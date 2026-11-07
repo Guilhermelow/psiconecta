@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { useConsultas } from '@/contexts/ConsultasContext';
-import { gerarNotificacoes, Notificacao } from '@/utils/notificacoes';
+import type { Notificacao } from '@/utils/notificacoes';
 
 export type NotificacaoComLeitura = Notificacao & { lida: boolean };
 
@@ -13,11 +12,15 @@ type NotificacoesContextType = {
 
 const NotificacoesContext = createContext<NotificacoesContextType | null>(null);
 
-export function NotificacoesProvider({ children }: { children: ReactNode }) {
-  const { consultas } = useConsultas();
-  const [lidas, setLidas] = useState<string[]>([]); // ids das já lidas
+type ProviderProps = {
+  notificacoes: Notificacao[]; // quem usa decide de onde elas vêm
+  children: ReactNode;
+};
 
-  const notificacoes = gerarNotificacoes(consultas).map((notificacao) => ({
+export function NotificacoesProvider({ notificacoes: base, children }: ProviderProps) {
+  const [lidas, setLidas] = useState<string[]>([]);
+
+  const notificacoes = base.map((notificacao) => ({
     ...notificacao,
     lida: lidas.includes(notificacao.id),
   }));

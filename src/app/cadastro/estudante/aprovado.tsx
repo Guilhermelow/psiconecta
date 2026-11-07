@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Alert } from 'react-native';
+import { View, Text, ScrollView, } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import AppButton from '@/components/AppButton';
@@ -6,6 +6,8 @@ import { useCadastro } from '@/contexts/CadastroContext';
 import { nomeCurto, iniciais } from '@/utils/nomes';
 import { styles } from '@/styles/cadastro/estudante/aprovado.styles';
 import { colors } from '@/styles/colors';
+import { router } from 'expo-router';
+import { useAuth } from '@/contexts/AuthContext';
 
 const PROXIMOS_PASSOS = [
   {
@@ -23,7 +25,34 @@ const PROXIMOS_PASSOS = [
 ];
 
 export default function CadastroAprovado() {
-  const { dados } = useCadastro();
+    const { dados, limparDados } = useCadastro();
+  const { entrar } = useAuth();
+
+    function entrarComoEstudante() {
+    entrar({
+      nome: dados.nome,
+      email: dados.email ?? '',
+      tipo: 'estudante',
+      cpf: dados.cpf,
+      nascimento: dados.nascimento,
+      periodo: dados.periodo,
+      instituicao: dados.instituicao,
+    });
+    limparDados();
+
+    if (router.canDismiss()) router.dismissAll();
+    router.replace('/estudante/inicio');
+  }
+
+  function irParaInicio() {
+    entrarComoEstudante();
+  }
+
+  // Entra e já abre a edição do perfil por cima da Home
+  function configurarPerfil() {
+    entrarComoEstudante();
+    router.push('/estudante/perfil-profissional');
+  }
 
   // Depois esses dados virão do servidor. Por enquanto, da "mochila".
   const nome = nomeCurto(dados.nome) || 'Seu nome';
@@ -112,12 +141,12 @@ export default function CadastroAprovado() {
           <AppButton
             titulo="Configurar meu perfil"
             icone="arrow-forward"
-            onPress={() => Alert.alert('Em breve', 'Configuração do perfil.')}
+            onPress={configurarPerfil}
           />
           <AppButton
             titulo="Ir para a tela inicial"
             variante="secundario"
-            onPress={() => Alert.alert('Em breve', 'Tela inicial do estudante.')}
+            onPress={irParaInicio}
           />
         </View>
 

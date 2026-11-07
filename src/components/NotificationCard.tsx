@@ -16,6 +16,7 @@ const APARENCIA: Record<
   confirmada: { icone: 'checkmark-circle', cor: colors.primaria, fundo: colors.primariaClara },
   cancelada: { icone: 'close-circle', cor: colors.erro, fundo: colors.vermelhoClaro },
   dica: { icone: 'bulb-outline', cor: colors.primaria, fundo: colors.primariaClara },
+  solicitacao: { icone: 'person-add', cor: colors.primaria, fundo: colors.primariaClara },
 };
 
 type Props = {

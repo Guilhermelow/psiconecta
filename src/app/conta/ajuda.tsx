@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import AppHeader from '@/components/AppHeader';
 import AppButton from '@/components/AppButton';
-import { styles } from '@/styles/paciente/conta/ajuda.styles';
+import { styles } from '@/styles/conta/ajuda.styles';
 import { colors } from '@/styles/colors';
 
 // ⚠️ Troque pelo e-mail real da clínica-escola

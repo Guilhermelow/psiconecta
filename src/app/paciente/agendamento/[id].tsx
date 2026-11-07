@@ -9,14 +9,13 @@ import StudentSummary from '@/components/StudentSummary';
 import { ESTUDANTES, AGENDA_PADRAO } from '@/mocks/estudantes';
 import {
   gerarDias,
-  ehHoje,
-  diaSemanaCurto,
   dataLonga,
   dataCurta,
   mesAno,
 } from '@/utils/datas';
 import { styles } from '@/styles/paciente/agendamento/escolherHorario.styles';
 import { colors } from '@/styles/colors';
+import DayStrip from '@/components/DayStrip';
 
 export default function EscolherHorario() {
     const params = useLocalSearchParams<{
@@ -88,47 +87,20 @@ export default function EscolherHorario() {
           {dia && <Text style={styles.mes}>{mesAno(dia.data)}</Text>}
         </View>
 
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.dias}
-        >
-          {dias.map((item) => {
-            const selecionado = item.chave === diaEscolhido;
-            const semVagas = item.horarios.length === 0;
+                <DayStrip
+          dias={dias.map((item) => {
             const vagas = item.horarios.length;
-
-            return (
-              <TouchableOpacity
-                key={item.chave}
-                style={[
-                  styles.diaChip,
-                  selecionado && styles.diaChipSelecionado,
-                  semVagas && styles.diaChipDesabilitado,
-                ]}
-                disabled={semVagas}
-                onPress={() => escolherDia(item.chave)}
-                activeOpacity={0.8}
-              >
-                <Text style={[styles.diaSemana, selecionado && styles.textoBranco]}>
-                  {ehHoje(item.data) ? 'Hoje' : diaSemanaCurto(item.data)}
-                </Text>
-                <Text style={[styles.diaNumero, selecionado && styles.textoBranco]}>
-                  {item.data.getDate()}
-                </Text>
-                <Text
-                  style={[
-                    styles.diaVagas,
-                    semVagas && styles.diaSemVagas,
-                    selecionado && styles.textoBranco,
-                  ]}
-                >
-                  {semVagas ? 'Sem vagas' : `${vagas} ${vagas === 1 ? 'vaga' : 'vagas'}`}
-                </Text>
-              </TouchableOpacity>
-            );
+            return {
+              chave: item.chave,
+              data: item.data,
+              legenda: vagas === 0 ? 'Sem vagas' : `${vagas} ${vagas === 1 ? 'vaga' : 'vagas'}`,
+              desabilitado: vagas === 0,
+              destaque: vagas > 0,
+            };
           })}
-        </ScrollView>
+          selecionado={diaEscolhido}
+          onSelecionar={escolherDia}
+        />
 
         {/* Horários do dia escolhido */}
         {dia ? (

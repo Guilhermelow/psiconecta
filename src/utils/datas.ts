@@ -118,3 +118,39 @@ export function tempoRelativo(quando: Date, agora = new Date()) {
   if (minutos < 7 * 24 * 60) return DIAS[quando.getDay()];
   return `${quando.getDate()}/${quando.getMonth() + 1}`;
 }
+// Data e hora daqui a X minutos (usado nos exemplos)
+export function daquiA(minutos: number) {
+  const data = new Date(Date.now() + minutos * 60 * 1000);
+  const hora = `${String(data.getHours()).padStart(2, '0')}:${String(data.getMinutes()).padStart(2, '0')}`;
+  return { data: chaveData(data), hora };
+}
+
+// "Em 45 min", "Em 2 h 15 min", "Em andamento", "Dom, 8/11"
+export function tempoAte(quando: Date, agora = new Date()) {
+  const minutos = Math.round((quando.getTime() - agora.getTime()) / 60000);
+
+  if (minutos <= 0) return 'Em andamento';
+  if (minutos < 60) return `Em ${minutos} min`;
+  if (ehHoje(quando)) {
+    const horas = Math.floor(minutos / 60);
+    const resto = minutos % 60;
+    return resto ? `Em ${horas} h ${resto} min` : `Em ${horas} h`;
+  }
+  return dataCurta(quando);
+}
+
+// Os próximos X dias a partir de hoje (hoje incluído)
+export function proximosDias(quantidade: number, inicio = new Date()) {
+  return Array.from(
+    { length: quantidade },
+    (_, i) => new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate() + i)
+  );
+}
+
+// 200 → "3 h 20 min" | 50 → "50 min" | 120 → "2 h"
+export function formatarDuracao(minutos: number) {
+  const horas = Math.floor(minutos / 60);
+  const resto = minutos % 60;
+  if (!horas) return `${resto} min`;
+  return resto ? `${horas} h ${resto} min` : `${horas} h`;
+}

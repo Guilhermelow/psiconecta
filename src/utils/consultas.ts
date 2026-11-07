@@ -15,7 +15,7 @@ export function situacaoDaConsulta(consulta: Consulta, agora = new Date()): Situ
 }
 
 // A sala abre 15 minutos antes e fecha no fim da consulta
-export function salaAberta(consulta: Consulta, agora = new Date()) {
+export function salaAberta(consulta: { data: string; hora: string }, agora = new Date()) {
   const inicio = dataEHora(consulta.data, consulta.hora).getTime();
   const abre = inicio - 15 * MINUTO;
   const fecha = inicio + DURACAO_MINUTOS * MINUTO;
@@ -23,7 +23,7 @@ export function salaAberta(consulta: Consulta, agora = new Date()) {
 }
 
 // Só pode cancelar até 4 horas antes
-export function podeCancelar(consulta: Consulta, agora = new Date()) {
+export function podeCancelar(consulta: { data: string; hora: string }, agora = new Date()) {
   const inicio = dataEHora(consulta.data, consulta.hora).getTime();
   return inicio - agora.getTime() >= 4 * 60 * MINUTO;
 }

@@ -8,7 +8,7 @@ import AppButton from '@/components/AppButton';
 import { useAuth } from '@/contexts/AuthContext';
 import { validarNome, validarEmail } from '@/utils/validacoes';
 import { ocultarCPF } from '@/utils/mascaras';
-import { styles } from '@/styles/paciente/conta/dados.styles';
+import { styles } from '@/styles/conta/dados.styles';
 
 type Erros = {
   nome?: string;

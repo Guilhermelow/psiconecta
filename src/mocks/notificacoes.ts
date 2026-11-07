@@ -21,3 +21,23 @@ export function criarDicas(agora: Date): Notificacao[] {
     },
   ];
 }
+
+// Dicas de exemplo para o estudante
+export function criarDicasEstudante(agora: Date): Notificacao[] {
+  return [
+    {
+      id: 'dica-supervisao',
+      tipo: 'dica',
+      titulo: 'Lembrete de supervisão',
+      texto: 'Registre as sessões da semana para discutir os casos na supervisão.',
+      quando: new Date(agora.getTime() - DIA),
+    },
+    {
+      id: 'boas-vindas-estudante',
+      tipo: 'dica',
+      titulo: 'Boas-vindas ao Psiconecta',
+      texto: 'Mantenha sua disponibilidade atualizada para receber novas solicitações.',
+      quando: new Date(agora.getTime() - 9 * DIA),
+    },
+  ];
+}

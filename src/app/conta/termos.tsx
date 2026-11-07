@@ -2,7 +2,7 @@ import { View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import AppHeader from '@/components/AppHeader';
-import { styles } from '@/styles/paciente/conta/termos.styles';
+import { styles } from '@/styles/conta/termos.styles';
 import { colors } from '@/styles/colors';
 
 // ⚠️ Textos de exemplo: precisam ser revisados pela instituição antes de publicar

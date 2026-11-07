@@ -7,6 +7,12 @@ export type Usuario = {
   cpf?: string;
   nascimento?: string;
   aceitaLembretes?: boolean; // lembretes por e-mail
+  periodo?: string;      // estudante
+  instituicao?: string;  // estudante
+    // Perfil profissional (estudante) — é o que os pacientes veem
+  sobre?: string;
+  abordagem?: string;
+  focos?: string[];
 };
 
 type AuthContextType = {

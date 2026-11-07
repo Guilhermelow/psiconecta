@@ -39,43 +39,6 @@ export const styles = StyleSheet.create({
     color: colors.primaria,
   },
 
-  // Faixa de dias
-  dias: {
-    gap: 8,
-    paddingBottom: 4,
-  },
-  diaChip: {
-    width: 64,
-    paddingVertical: 10,
-    borderRadius: 14,
-    backgroundColor: colors.branco,
-    alignItems: 'center',
-    gap: 2,
-  },
-  diaChipSelecionado: {
-    backgroundColor: colors.primaria,
-  },
-  diaChipDesabilitado: {
-    opacity: 0.45,
-  },
-  diaSemana: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: colors.textoClaro,
-  },
-  diaNumero: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: colors.titulo,
-  },
-  diaVagas: {
-    fontSize: 10,
-    fontWeight: '600',
-    color: colors.primaria,
-  },
-  diaSemVagas: {
-    color: colors.textoClaro,
-  },
   textoBranco: {
     color: colors.branco,
   },

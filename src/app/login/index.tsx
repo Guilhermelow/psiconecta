@@ -35,13 +35,15 @@ export default function Login() {
       Alert.alert('Senha inválida', 'Sua senha tem no mínimo 8 caracteres.');
       return;
     }
-    // Provisório: sem servidor, todo login entra como paciente.
-    // Depois o servidor vai dizer o nome e se é paciente ou estudante.
-    entrar({ email: usuario, tipo: 'paciente' });
 
-    // Fecha as telas anteriores e abre a Home
+    // PROVISÓRIO (sem servidor): e-mail terminando em .edu.br entra como estudante.
+    // Depois, quem diz se é paciente ou estudante é o servidor.
+    const ehEstudante = usuario.trim().toLowerCase().endsWith('.edu.br');
+    entrar({ email: usuario.trim(), tipo: ehEstudante ? 'estudante' : 'paciente' });
+
+    // Fecha as telas anteriores e abre a Home certa
     if (router.canDismiss()) router.dismissAll();
-    router.replace('/paciente/inicio');
+    router.replace(ehEstudante ? '/estudante/inicio' : '/paciente/inicio');
   }
 
   return (
